@@ -1,0 +1,338 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap");
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    background-color: #3d3d3d;
+    color: white;
+    font-size: 0.9em;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 101;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.section-container {
+    padding: 90px 0px;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative; /* Agar panah bisa diatur posisinya relatif terhadap kontainer */
+}
+
+#home .section-container {
+    background-image: url('Geofisika.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+#tentang .section-container {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+#tentang p {
+    color: #3d3d3d; /* Warna teks yang diinginkan */
+}
+
+.about-content {
+    display: flex;
+    align-items: flex-start; /* Mengatur gambar dan teks untuk sejajar di atas */
+    gap: 30px; /* Jarak antara gambar dan teks */
+    padding: 20px; /* Menambahkan padding di sekitar konten */
+    max-width: 1200px; /* Maksimum lebar konten */
+    margin: 0 auto; /* Centering container */
+}
+
+/* Mengatur gambar */
+.about-image img {
+    width: 500px; /* Ukuran gambar yang diperbesar */
+    height: 300px; /* Menjaga rasio aspek gambar */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Mengatur teks */
+.about-text {
+    max-width: 600px; /* Membatasi lebar teks */
+    padding-left: 100px; /* Jarak antara teks dan gambar */
+}
+
+.about-text h2 {
+    margin-top: 0; /* Menghilangkan margin atas untuk heading */
+}
+
+.about-text p {
+    margin-bottom: 20px; /* Jarak bawah antara paragraf dan daftar */
+    line-height: 1.6; /* Jarak baris untuk keterbacaan */
+    text-align: justify; /* Justify text alignment */
+}
+
+.features-list {
+    list-style-type: none; /* Menghilangkan bullet default */
+    padding: 0;
+    margin: 10px;
+}
+
+.features-list li {
+    position: relative;
+    padding-left: -50px; /* Ruang untuk icon centang */
+    margin-bottom: 10px; /* Jarak antar item */
+}
+
+
+
+#pertumbuhan .section-container {
+    background-color: #ffffff;
+}
+
+#pertumbuhan p {
+    color: #3d3d3d; 
+}
+
+#kontak .section-container {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+#kontak p {
+    color: #3d3d3d; 
+}
+
+/* Flexbox untuk kotak kontak */
+.contact-boxes {
+    display: flex;
+    justify-content: space-between; /* Memastikan kotak tersebar rata */
+    flex-wrap: wrap; /* Membolehkan kotak bergulir ke baris baru jika diperlukan */
+    padding: 40px;
+}
+
+/* Setiap kotak kontak */
+.contact-box {
+    position: relative;
+    width: 300px; /* Lebar kotak */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Agar overlay tidak meluap */
+    border: 2px solid #D3D3D3; /* Border abu */
+    text-align: center;
+}
+
+/* Gambar kontak */
+.contact-image {
+    position: relative; /* Agar overlay bisa diposisikan di atas gambar */
+}
+
+.contact-image img {
+    width: 100%; /* Memastikan gambar memenuhi lebar kotak */
+    height: 300px; /* Ukuran tinggi gambar */
+    object-fit: cover; /* Menjaga rasio aspek gambar tanpa merusak kualitas */
+    display: block;
+    transition: opacity 0.3s; /* Transisi saat hover */
+}
+
+/* Overlay abu dan ikon */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.6); /* Warna abu transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Awalnya tersembunyi */
+    transition: opacity 0.3s;
+    gap: 10px; /* Jarak antara ikon */
+}
+
+/* Ikon sosial */
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Bulatkan ikon */
+    background-color: white; /* Latar belakang putih untuk ikon */
+    padding: 5px;
+    border: 2px solid #D3D3D3; /* Border abu untuk ikon */
+}
+
+/* Menampilkan ikon gambar */
+.social-icon img {
+    width: 80%;
+    height: 120%;
+}
+
+/* Ikon Instagram dan LinkedIn */
+.social-icon.instagram img {
+    background-color: #E4405F; /* Warna Instagram */
+}
+
+.social-icon.linkedin img {
+    background-color: #0077B5; /* Warna LinkedIn */
+}
+
+/* Hover effect */
+.contact-image:hover .overlay {
+    opacity: 1; /* Menampilkan overlay saat hover */
+}
+
+.contact-image:hover img {
+    opacity: 0.3; /* Mengurangi visibilitas gambar saat hover */
+}
+
+.content, p {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.h1, h2 {
+    color: #3d3d3d;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: -50px;
+}
+
+
+.arrows {
+    display: flex;
+    justify-content: space-between; /* Panah tersebar merata di kanan dan kiri */
+    align-items: center;
+    padding: 0 70px; /* Jarak dari tepi kontainer */
+    margin-top: 20px;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none; /* Menghilangkan background default pada button */
+    border: none; /* Menghilangkan border default pada button */
+    cursor: pointer;
+    padding: 0; /* Menghilangkan padding default pada button */
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Ukuran lingkaran */
+    height: 60px; /* Ukuran lingkaran */
+    border-radius: 50%; /* Membuat lingkaran */
+    background-color: transparent; /* Lingkaran awalnya transparan */
+    color: white; /* Warna panah */
+    font-size: 3em; /* Ukuran font panah */
+    transition: background-color 0.3s, color 0.3s; /* Transisi warna saat hover */
+}
+
+.arrow:hover .circle {
+    background-color: rgba(255, 255, 255, 0.5); /* Warna lingkaran saat hover */
+    color: #000; /* Warna panah saat hover */
+}
+
+.arrow.prev {
+    margin-right: 10px; /* Jarak antara panah kiri dan teks */
+}
+
+.arrow.next {
+    margin-left: 10px; /* Jarak antara panah kanan dan teks */
+}
+
+
+.arrows p {
+    font-size: 1.5em; /* Ukuran font teks */
+    color: white; /* Warna teks */
+    text-align: center; /* Memastikan teks berada di tengah */
+    margin: 0; /* Menghapus margin default */
+    padding: 0 20px; /* Jarak kiri dan kanan teks */
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+
+/* Gaya umum untuk tombol */
+.action-btn {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.3s; /* Transisi warna dan efek transform saat hover */
+}
+
+/* Gaya saat hover untuk tombol Mulai */
+.action-btn.mulai:hover {
+    background-color: #ffffff; /* Warna latar belakang saat hover */
+    transform: scale(1.05); /* Zoom sedikit saat hover */
+    color:#000;
+}
+
+/* Gaya saat hover untuk tombol Pelajari */
+.action-btn.pelajari:hover {
+    background-color: #ffffff; /* Warna latar belakang saat hover */
+    transform: scale(1.05); /* Zoom sedikit saat hover */
+    color:#000;
+}
+
+.footer {
+    background-color: #3d3d3d;
+    color: #ffffff;
+    padding: 2vh 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto; /* Menempel di bawah */
+    width: 100%; /* Lebar penuh */
+    font-size: 0.8em; /* Ukuran font default */
+    height: 20px; /* Tinggi default */
+    
+  }
+
+  .footer p {
+    margin-bottom: 5px; /* Jarak tambahan di bawah teks */
+}
+  
+
+
+
+
+
+
+
