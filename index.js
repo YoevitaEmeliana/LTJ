@@ -38,53 +38,115 @@ document.querySelectorAll('.year-filter').forEach(input => {
     });
 });
 
-// Tahun data asli
-const years = [2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033];
-
-// Menyiapkan input untuk setiap tahun
 document.addEventListener('DOMContentLoaded', () => {
-    generateSectorInputs();
-    generateYearInputs();
-    updateChart(years, Array(years.length).fill(0)); // Data dummy untuk inisialisasi grafik
+    const table = document.getElementById('economic-growth-table');
+    
+    // Fungsi untuk menghitung total per kolom
+    function calculateTotals() {
+        const years = ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'];
+        years.forEach((year, index) => {
+            // Mengambil semua sel pada kolom tertentu
+            const cells = table.querySelectorAll(`tbody tr td:nth-child(${index + 3})`); // +3 karena 2 kolom pertama tidak dihitung
+            let total = 0;
+            cells.forEach(cell => {
+                // Mengonversi format angka Indonesia ke format internasional untuk perhitungan
+                const value = parseFloat(cell.textContent.replace(/\./g, '').replace(',', '.').trim()) || 0;
+                total += value;
+            });
+            // Mengonversi hasil perhitungan kembali ke format Indonesia untuk ditampilkan
+            document.getElementById(`total-${year}`).textContent = total.toFixed(2)
+                .replace('.', ',')
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        });
+    }
+
+    // Menambahkan event listener untuk perubahan pada sel tabel
+    table.addEventListener('input', (event) => {
+        if (event.target.tagName === 'TD') {
+            calculateTotals();
+        }
+    });
+
+    // Inisialisasi total saat halaman dimuat
+    calculateTotals();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const table = document.getElementById('projected-growth-table');
+    
+    // Fungsi untuk menghitung total per kolom
+    function calculateTotals() {
+        const years = ['2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033'];
+        years.forEach((year, index) => {
+            // Mengambil semua sel pada kolom tertentu
+            const cells = table.querySelectorAll(`tbody tr td:nth-child(${index + 3})`); // +3 karena 2 kolom pertama tidak dihitung
+            let total = 0;
+            cells.forEach(cell => {
+                // Mengonversi format angka Indonesia ke format internasional untuk perhitungan
+                const text = cell.textContent.replace(/\./g, '').replace(',', '.').trim();
+                const value = parseFloat(text) || 0;
+                total += value;
+            });
+            // Mengonversi hasil perhitungan kembali ke format Indonesia untuk ditampilkan
+            const formattedTotal = total.toFixed(2)
+                .replace('.', ',')
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            document.getElementById(`total-${year}`).textContent = formattedTotal;
+        });
+    }
+
+    // Fungsi untuk menghitung dan menampilkan proyeksi
+    function calculateProjection() {
+        // Tambahkan kode untuk menghitung proyeksi dan mengisi tabel dengan data di sini
+        // Pastikan tabel diisi dengan data yang sesuai sebelum menghitung total
+
+        // Setelah tabel diisi, panggil fungsi calculateTotals untuk menghitung total
+        calculateTotals();
+    }
+
+    // Tambahkan event listener pada tombol untuk menghitung proyeksi
+    document.querySelector('.calculate-button').addEventListener('click', calculateProjection);
+
+    // Jika diperlukan, panggil calculateTotals secara otomatis saat data diubah
+    // table.addEventListener('input', (event) => {
+    //     if (event.target.tagName === 'TD') {
+    //         calculateTotals();
+    //     }
+    // });
+});
+
+
+// Fungsi untuk menghasilkan input sektor dinamis
+function generateSectorInputs() {
+    const sectorFields = document.getElementById('sector-fields');
+
+    // Hapus input sektor sebelumnya
+    sectorFields.innerHTML = '';
+
+    const inputDiv = document.createElement('div');
+    inputDiv.innerHTML = `
+        <label for="sector-name">Nama Sektor:</label>
+        <input type="text" id="sector-name">
+    `;
+    sectorFields.appendChild(inputDiv);
+
+    generateYearInputs(); // Update input tahun
+}
+
+// Fungsi untuk menghasilkan input tahun
 function generateYearInputs() {
     const inputFields = document.getElementById('input-fields');
+    inputFields.innerHTML = ''; // Hapus input tahun sebelumnya
+
+    const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
     years.forEach(year => {
         const inputDiv = document.createElement('div');
         inputDiv.innerHTML = `
             <label for="revenue-${year}">${year}:</label>
-            <input type="number" id="revenue-${year}" class="revenue-input" placeholder="Masukkan pendapatan">
+            <input type="number" id="revenue-${year}" class="revenue-input" step="0.01">
         `;
         inputFields.appendChild(inputDiv);
     });
-}
-
-// Generate sector inputs based on user-defined count
-function generateSectorInputs() {
-    const sectorCount = parseInt(document.getElementById('sector-count').value, 10);
-    const sectorFields = document.getElementById('sector-fields');
-
-    // Clear existing sector inputs
-    let sectorInputDiv = document.getElementById('sector-inputs');
-    if (sectorInputDiv) {
-        sectorInputDiv.remove();
-    }
-
-    // Create new sector inputs
-    sectorInputDiv = document.createElement('div');
-    sectorInputDiv.id = 'sector-inputs';
-
-    for (let i = 1; i <= sectorCount; i++) {
-        const inputDiv = document.createElement('div');
-        inputDiv.innerHTML = `
-            <label for="sector-${i}">Sektor ${i}:</label>
-            <input type="text" id="sector-${i}" class="sector-input" placeholder="Masukkan nama sektor">
-        `;
-        sectorInputDiv.appendChild(inputDiv);
-    }
-
-    sectorFields.appendChild(sectorInputDiv);
 }
 
 // Fungsi untuk melakukan regresi linier
@@ -105,63 +167,65 @@ function linearRegression(x, y) {
     return [intercept, slope];
 }
 
-// Menghitung dan menampilkan proyeksi
+// Fungsi untuk menghitung dan menampilkan proyeksi
 function calculateProjection() {
+    const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
     const revenues = [];
-    const sectors = [];
-    
-    document.querySelectorAll('.revenue-input').forEach(input => {
-        revenues.push(parseFloat(input.value) || 0);
-    });
-    
-    document.querySelectorAll('.sector-input').forEach(input => {
-        sectors.push(input.value || 'Sektor ' + (sectors.length + 1));
+
+    // Ambil data pendapatan dari input pengguna
+    years.forEach(year => {
+        const revenue = parseFloat(document.getElementById(`revenue-${year}`).value) || 0;
+        revenues.push(revenue);
     });
 
-    const [intercept, slope] = linearRegression(years.map((_, index) => 2023 - index), revenues);
+    // Lakukan regresi linier
+    const xData = years;
+    const [intercept, slope] = linearRegression(xData, revenues);
 
+    // Hitung prediksi untuk tahun 2024 hingga 2033
     const predictedYears = [];
     const predictedRevenues = [];
 
     for (let year = 2024; year <= 2033; year++) {
         predictedYears.push(year);
-        predictedRevenues.push(intercept + slope * (year - 2023));
+        predictedRevenues.push(intercept + slope * year);
     }
 
-    displayProjectedData(predictedRevenues, sectors);
-    updateChart(predictedYears, predictedRevenues);
+    displayProjectedData(predictedYears, predictedRevenues);
+    updateChart(years, revenues, predictedYears, predictedRevenues);
 }
 
-// Menampilkan data proyeksi di tabel
-function displayProjectedData(predictedRevenues, sectors) {
+// Fungsi untuk menampilkan data proyeksi di tabel
+function displayProjectedData(predictedYears, predictedRevenues) {
     const tbody = document.getElementById('predicted-data');
     tbody.innerHTML = ''; // Kosongkan tabel sebelum memperbarui
 
-    sectors.forEach((sector, index) => {
-        let row = document.createElement('tr');
+    // Ambil nama sektor dari input pengguna
+    const sectorName = document.getElementById('sector-name').value || 'Sektor 1';
 
-        // Nomor dan nama sektor
-        let cell = document.createElement('td');
-        cell.textContent = index + 1;
-        row.appendChild(cell);
+    // Buat satu baris untuk sektor
+    let row = document.createElement('tr');
+    
+    let cell = document.createElement('td');
+    cell.textContent = '1'; // Nomor baris
+    row.appendChild(cell);
 
+    cell = document.createElement('td');
+    cell.textContent = sectorName; // Nama sektor
+    row.appendChild(cell);
+
+    // Data prediksi
+    predictedRevenues.forEach(revenue => {
         cell = document.createElement('td');
-        cell.textContent = sector;
+        cell.textContent = revenue.toFixed(2);
         row.appendChild(cell);
-
-        // Data prediksi
-        predictedRevenues.forEach(revenue => {
-            cell = document.createElement('td');
-            cell.textContent = revenue.toFixed(2);
-            row.appendChild(cell);
-        });
-
-        tbody.appendChild(row);
     });
+
+    tbody.appendChild(row);
 }
 
 // Update grafik dengan Chart.js
-function updateChart(years, revenues) {
+function updateChart(years, revenues, predictedYears, predictedRevenues) {
     const ctx = document.getElementById('growth-chart').getContext('2d');
 
     if (window.chartInstance) {
@@ -171,13 +235,249 @@ function updateChart(years, revenues) {
     window.chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: years,
+            labels: [...years, ...predictedYears],
+            datasets: [
+                {
+                    label: 'Data Asli',
+                    data: years.map((year, idx) => ({ x: year, y: revenues[idx] })),
+                    borderColor: 'blue', // Warna garis data asli
+                    backgroundColor: 'rgb(6, 86, 190, 0.1)', // Latar belakang area data asli
+                    borderWidth: 2,
+                    fill: true
+                },
+                {
+                    label: 'Prediksi Pendapatan',
+                    data: predictedYears.map((year, idx) => ({ x: year, y: predictedRevenues[idx] })),
+                    borderColor: 'red', // Warna garis prediksi
+                    backgroundColor: 'rgb(202, 25, 25, 0.1)', // Latar belakang area prediksi
+                    borderWidth: 2,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'white' // Warna teks label legenda
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Pendapatan: ${tooltipItem.raw.y.toFixed(2)}`;
+                        }
+                    },
+                    backgroundColor: 'white', // Latar belakang tooltip
+                    titleColor: 'gray', // Warna judul tooltip
+                    bodyColor: 'gray', // Warna teks tubuh tooltip
+                    borderColor: 'gray', // Warna border tooltip
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white' // Warna teks pada sumbu x
+                    },
+                    grid: {
+                        color: 'rgb(255, 255, 255, 0.1)' // Warna garis grid x
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white' // Warna teks pada sumbu y
+                    },
+                    grid: {
+                        color: 'rgb(255, 255, 255, 0.1)' // Warna garis grid y
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+// Inisialisasi form input saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    generateSectorInputs(); // Initial call to generate inputs based on default sector count
+    generateYearInputs();   // Initial call to generate inputs for years
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    function calculateTotal(columnClass) {
+        let cells = document.querySelectorAll('.' + columnClass);
+        let total = 0;
+
+        cells.forEach(cell => {
+            let value = parseFloat(cell.textContent.replace(/,/g, ''));
+            if (!isNaN(value)) {
+                total += value;
+            }
+        });
+
+        return total;
+    }
+
+    function formatNumber(num) {
+        return new Intl.NumberFormat('id-ID').format(num);
+    }
+
+    function calculateYearlyTotals(year) {
+        let totalRupiah = calculateTotal('rupiah[data-year="' + year + '"]');
+        document.getElementById('total-' + year + '-rupiah').textContent = formatNumber(totalRupiah);
+
+        let cellsRupiah = document.querySelectorAll('.rupiah[data-year="' + year + '"]');
+        cellsRupiah.forEach(cell => {
+            let value = parseFloat(cell.textContent.replace(/,/g, ''));
+            if (!isNaN(value) && totalRupiah > 0) {
+                let percentValue = (value / totalRupiah) * 100;
+                let percentCell = cell.nextElementSibling;
+                percentCell.textContent = percentValue.toFixed(2);
+            }
+        });
+
+        document.getElementById('total-' + year + '-percent').textContent = "100.00";
+    }
+
+    ['2013', '2018', '2023', '2025', '2028', '2033'].forEach(year => {
+        calculateYearlyTotals(year);
+    });
+
+    document.getElementById('economic-growth-table').addEventListener('input', function(event) {
+        let cell = event.target;
+        let year = cell.getAttribute('data-year');
+
+        if (year) {
+            calculateYearlyTotals(year);
+        }
+    });
+});
+
+document.querySelectorAll('#weighting-results-table tbody td[contenteditable="true"]').forEach(cell => {
+    cell.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default behavior of Enter key
+            
+            const cell = event.target;
+            let inputValue = cell.innerText.trim();
+
+            try {
+                // Replace commas with dots for decimal points
+                inputValue = inputValue.replace(/,/g, '.');
+
+                // Remove any characters that are not numbers, operators, or parentheses
+                inputValue = inputValue.replace(/[^0-9+\-*/().]/g, '');
+
+                // Evaluate the expression using Decimal.js
+                const result = new Decimal(eval(inputValue)).times(100); // Multiply result by 100
+
+                // Format the result to two decimal places and use dot as decimal separator
+                cell.innerText = result.toFixed(2); // Ensures dot is used
+                cell.classList.remove('error'); // Remove any previous error styling
+            } catch (error) {
+                // If there's an error (invalid expression), display a warning
+                cell.classList.add('error');
+                cell.innerText = 'Invalid input'; // Optionally display an error message
+            }
+        }
+    });
+});
+
+document.querySelectorAll('#economic-pull-table tbody td[contenteditable="true"]').forEach(cell => {
+    cell.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const cell = event.target;
+            let inputValue = cell.innerText.trim();
+
+            try {
+                // Remove any characters that are not digits, operators, or parentheses
+                inputValue = inputValue.replace(/[^0-9+\-*/().^]/g, '');
+                // Replace ^ with ** for exponentiation in JavaScript
+                inputValue = inputValue.replace(/\^/g, '**');
+                
+                // Check if the input is a valid mathematical expression
+                if (inputValue && /^[0-9+\-*/().^]+$/.test(inputValue)) {
+                    // Evaluate the expression using JavaScript's eval
+                    const result = new Decimal(eval(inputValue));
+                    cell.innerText = result.toFixed(2);
+                    cell.classList.remove('error');
+                } else if (inputValue === '') {
+                    cell.classList.remove('error');
+                } else {
+                    throw new Error('Invalid input');
+                }
+            } catch (error) {
+                cell.classList.add('error');
+                cell.innerText = 'Invalid input';
+            }
+        }
+    });
+});
+
+document.querySelectorAll('#economic-increase-table tbody td[contenteditable="true"]').forEach(cell => {
+    cell.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const cell = event.target;
+            let inputValue = cell.innerText.trim();
+
+            try {
+                // Sanitize input and replace ^ with ** for JavaScript exponentiation
+                inputValue = inputValue.replace(/\^/g, '**');
+
+                // Check for valid input characters
+                if (/^[0-9+\-*/().\s]*$/.test(inputValue)) {
+                    const result = eval(inputValue);
+                    const percentageResult = (result * 100).toFixed(2); // Convert to percentage
+                    cell.innerText = percentageResult + '%'; // Display with percentage sign
+                    cell.classList.remove('error');
+                } else {
+                    throw new Error('Invalid input');
+                }
+            } catch (error) {
+                cell.classList.add('error');
+                cell.innerText = 'Invalid input';
+                console.error('Invalid input:', inputValue);
+            }
+        }
+    });
+});
+
+function calculateProduction() {
+    const initialAmount = parseFloat(document.getElementById('initial-amount-production').value);
+    const remainingAmount = parseFloat(document.getElementById('remaining-amount-production').value);
+    const timePeriod = parseFloat(document.getElementById('time-period-production').value);
+
+    if (isNaN(initialAmount) || isNaN(remainingAmount) || isNaN(timePeriod) || timePeriod <= 0) {
+        alert("Please enter valid numbers.");
+        return;
+    }
+
+    // Calculate lambda
+    const lambda = -Math.log(remainingAmount / initialAmount) / timePeriod;
+
+    // Calculate remaining amounts and reverse graph data
+    const t_values = Array.from({ length: (timePeriod * 10) + 1 }, (_, i) => i * 0.1);
+    const N_values = t_values.map(t => initialAmount * Math.exp(-lambda * t));
+    const N_reverse = N_values.map(N => initialAmount - N);
+
+    // Plotting using Chart.js
+    const ctx = document.getElementById('production-chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: t_values,
             datasets: [{
-                label: 'Proyeksi Pendapatan',
-                data: revenues,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderWidth: 1
+                label: 'Produced Metal (tons)',
+                data: N_reverse,
+                borderColor: 'blue', // Warna garis grafik
+                backgroundColor: 'rgb(0, 0, 255, 0.1)', // Latar belakang area grafik
+                fill: true,
+                borderWidth: 2 // Lebar garis grafik
             }]
         },
         options: {
@@ -185,16 +485,91 @@ function updateChart(years, revenues) {
             plugins: {
                 legend: {
                     display: true,
-                    position: 'top',
+                    labels: {
+                        color: 'white' // Warna teks label legenda
+                    }
                 },
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return `Pendapatan: ${tooltipItem.raw.toFixed(2)}`;
+                            return `Amount: ${tooltipItem.raw.toFixed(2)}`;
                         }
+                    },
+                    backgroundColor: 'white', // Latar belakang tooltip
+                    titleColor: 'grey', // Warna judul tooltip
+                    bodyColor: 'grey', // Warna teks tubuh tooltip
+                    borderColor: 'grey', // Warna border tooltip
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white' // Warna teks pada sumbu x
+                    },
+                    grid: {
+                        color: 'rgb(255, 255, 255, 0.1)' // Warna garis grid x
+                    },
+                    title: {
+                        display: true,
+                        text: 'Years',
+                        color: 'white' // Warna teks judul sumbu x
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white' // Warna teks pada sumbu y
+                    },
+                    grid: {
+                        color: 'rgb(255, 255, 255, 0.1)' // Warna garis grid y
+                    },
+                    title: {
+                        display: true,
+                        text: 'Amount of Rare Earth Elements Produced (tons)',
+                        color: 'white' // Warna teks judul sumbu y
                     }
                 }
             }
         }
     });
+    
+
+    // Populate the projection table
+    const tableBody = document.getElementById('production-projected-data');
+    tableBody.innerHTML = '';
+    for (let i = 0; i < t_values.length; i++) {
+        if (i % 10 === 0) { // Show data for each whole year
+            const year = (i / 10);
+            const row = `<tr>
+                <td>${year}</td>
+                <td>${N_reverse[i].toFixed(2)}</td>
+            </tr>`;
+            tableBody.insertAdjacentHTML('beforeend', row);
+        }
+    }
 }
+
+// Toggle menu state
+function toggleMenu() {
+    const navContainer = document.querySelector('.nav-container');
+    const hamburger = document.querySelector('.hamburger-menu');
+
+    navContainer.classList.toggle('show'); // Toggle the visibility of the menu
+    hamburger.classList.toggle('active');  // Toggle the hamburger icon animation
+}
+
+// Close menu if clicking outside the menu or hamburger icon
+document.addEventListener('click', function(event) {
+    const navContainer = document.querySelector('.nav-container');
+    const hamburger = document.querySelector('.hamburger-menu');
+
+    if (!navContainer.contains(event.target) && !hamburger.contains(event.target)) {
+        navContainer.classList.remove('show'); // Hide the menu
+        hamburger.classList.remove('active');  // Deactivate the hamburger icon animation
+    }
+});
+
+// Prevent toggleMenu function from closing the menu when clicking on hamburger icon
+document.querySelector('.hamburger-menu').addEventListener('click', function(event) {
+    event.stopPropagation(); // Stop event from propagating to the document
+});

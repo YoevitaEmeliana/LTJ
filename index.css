@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 html, body {
     margin: 0;
@@ -9,43 +9,85 @@ html, body {
     overflow-x: hidden;
 }
 
-header {
+.header-container {
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    height: 25px;
-    background-color: #3d3d3d;
-    color: white;
-    font-size: 0.9em;
+    background-color: #ffffff;
     padding: 10px 0;
-    text-align: center;
     z-index: 101;
+    display: flex;
+    align-items: center;
 }
 
-nav ul {
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    margin-left: 20px;
+    z-index: 102;
+}
+
+.hamburger-menu .bar1,
+.hamburger-menu .bar2,
+.hamburger-menu .bar3 {
+    width: 30px;
+    height: 2px;
+    background-color: #000;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.hamburger-menu.active .bar1 {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar2 {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar3 {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: flex-end; /* Alignt navigation to the right by default */
+    margin: 0;
+    padding: 0;
+    flex-grow: 1; /* Allow container to take remaining space */
+}
+
+.nav-container ul {
     list-style: none;
     display: flex;
-    justify-content: right;
     margin: 0;
     padding: 0;
 }
 
-nav ul li {
+.nav-container li {
     margin: 0 30px;
 }
 
-nav ul li a {
-    color: white;
+.nav-container li a {
     text-decoration: none;
-    font-size: 1.2em;
+    color: #3d3d3d; /* Default text color */
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px; /* Rounded corners for the background box */
 }
+
+.nav-container li a:hover {
+    background-color: #3d3d3d; /* Gray background box */
+    color: white; /* White text on hover */
+}
+
 
 .section-container {
     padding: 90px 0px;
     margin: 0;
     box-sizing: border-box;
-    position: relative; /* Agar panah bisa diatur posisinya relatif terhadap kontainer */
+    position: relative;
 }
 
 #home .section-container {
@@ -57,249 +99,351 @@ nav ul li a {
 
 #tentang .section-container {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 60px;
+    height: 500px;
 }
 
 #tentang p {
-    color: #3d3d3d; /* Warna teks yang diinginkan */
+    color: #3d3d3d;
 }
+
+#input-section .section-container {
+    background-color: #ffffff;
+    color: #3d3d3d;
+    height:800px;
+}
+
+#input-section h2 {
+    color: #3d3d3d;
+}
+
+/* Menargetkan kotak input dalam form */
+#revenue-form input[type="number"] {
+    width: 80%; /* Mengatur lebar menjadi 100% dari kontainer induknya */
+    max-width: 219px; /* Mengatur lebar maksimum */
+    box-sizing: border-box; /* Menghitung padding dan border dalam lebar total */
+}
+
+#revenue-form input[type="text"] {
+    width: 60%; /* Mengatur lebar menjadi 100% dari kontainer induknya */
+    max-width: 250px; /* Mengatur lebar maksimum */
+    box-sizing: border-box; /* Menghitung padding dan border dalam lebar total */
+}
+
 
 .about-content {
     display: flex;
-    align-items: flex-start; /* Mengatur gambar dan teks untuk sejajar di atas */
-    gap: 30px; /* Jarak antara gambar dan teks */
-    padding: 20px; /* Menambahkan padding di sekitar konten */
-    max-width: 1200px; /* Maksimum lebar konten */
-    margin: 0 auto; /* Centering container */
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Mengatur gambar */
 .about-image img {
-    width: 500px; /* Ukuran gambar yang diperbesar */
-    height: 300px; /* Menjaga rasio aspek gambar */
-    border-radius: 8px; /* Rounded corners */
+    width: 500px;
+    height: 300px;
+    border-radius: 8px;
 }
 
-/* Mengatur teks */
 .about-text {
-    max-width: 600px; /* Membatasi lebar teks */
-    padding-left: 100px; /* Jarak antara teks dan gambar */
+    max-width: 600px;
+    padding-left: 100px;
 }
 
 .about-text h2 {
-    margin-top: 0; /* Menghilangkan margin atas untuk heading */
+    margin-top: 0;
 }
 
 .about-text p {
-    margin-bottom: 20px; /* Jarak bawah antara paragraf dan daftar */
-    line-height: 1.6; /* Jarak baris untuk keterbacaan */
-    text-align: justify; /* Justify text alignment */
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: justify;
 }
 
 .features-list {
-    list-style-type: none; /* Menghilangkan bullet default */
+    list-style-type: none;
     padding: 0;
     margin: 10px;
 }
 
 .features-list li {
     position: relative;
-    padding-left: -50px; /* Ruang untuk icon centang */
-    margin-bottom: 10px; /* Jarak antar item */
+    padding-left: -50px;
+    margin-bottom: 10px;
 }
 
-
-
 #pertumbuhan .section-container {
-    background-color: #3d3d3d;
-    height: 800px;
+    background-color: #ffffff;
+    top: 20px;
+    height: auto;
+    padding-bottom: 50px;
 }
 
 #pertumbuhan p,
-#pertumbuhan h2,
-#pertumbuhan h3 {
-    color: #ffffff; 
+#pertumbuhan h2 {
+    color: #3d3d3d;
 }
 
-#pertumbuhan h3 {
-    margin-left: 70px;
+#production-input-section .section-container {
+    background-color: #ffffff;
+    padding: 40px;
+    height: auto;
 }
 
+#production-input-section p,
+#production-input-section h2 {
+    color: #3d3d3d;
+}
+
+#hasil-pembobotan .section-container {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+#tarikan-ekonomi .section-container {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+#peningkatan-tarikan-ekonomi .section-container {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+#production-projection .section-container {
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+/* Gaya Umum untuk Semua Tabel */
 table {
-    width: 90%;
-    border-collapse: collapse;
-    margin: 10px auto;
-    font-size: 0.8em;
-    font-family: 'Arial', sans-serif;
-    color: white;
+    width: 90%; /* Atur lebar tabel sesuai kebutuhan */
+    border-collapse: collapse; /* Menggabungkan border tabel */
+    table-layout: fixed; /* Tetapkan lebar kolom tetap */
+    margin: 20px auto; /* Jarak bawah tabel dan menjaga tabel di tengah halaman */
+    color: #3d3d3d; /* Warna teks tabel */
 }
 
-thead th, tbody td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    word-wrap: break-word;
-    word-break: break-word;
-    white-space: normal;
-    background-color: #333;
-    color: white;
-    vertical-align: top;
+/* Gaya untuk Semua Sel Tabel */
+th, td {
+    border: 1px solid #3d3d3d; /* Border abu-abu terang */
+    padding: 10px; /* Jarak dalam sel tabel */
+    text-align: center; /* Rata tengah teks dalam sel */
+    overflow: hidden; /* Menyembunyikan konten yang melampaui lebar kolom */
+    white-space: normal; /* Memungkinkan teks membungkus ke baris berikutnya */
+    word-wrap: break-word; /* Memungkinkan teks membungkus baris dan memecah kata jika diperlukan */
 }
 
-/* Header styling */
-thead th {
-    background-color: #444;
-    font-weight: bold;
+/* Gaya untuk Judul Kolom */
+th, tfoot {
+    background-color: #a8a8a8; /* Warna latar belakang judul kolom */
+    color: #3d3d3d; /* Warna teks judul kolom */
+}
+
+
+/* Spesifik untuk Kolom Rupiah, %, dan Proyeksi */
+.rupiah-column, .percentage-column, .projection-column {
+    white-space: normal; /* Memungkinkan teks membungkus ke baris berikutnya */
+    word-wrap: break-word; /* Memungkinkan teks membungkus baris dan memecah kata jika diperlukan */
+}
+
+
+#calculation-description h2 {
+    color: #ffffff;
+}
+
+/* Gaya untuk Kontainer Deskripsi Perhitungan */
+#calculation-description {
+    background-color: #3d3d3d; /* Warna latar belakang kontainer */
+    padding: 20px; /* Jarak di sekitar konten */
+    margin: 20px 0; /* Jarak atas dan bawah kontainer */
+}
+
+.calculation-details {
+    margin-bottom: 30px; /* Jarak bawah setiap bagian deskripsi */
+    padding: 15px; /* Jarak di sekitar setiap bagian */
+    background-color: #ffffff; /* Warna latar belakang setiap bagian */
+    border-radius: 4px; /* Sudut melengkung setiap bagian */
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.calculation-details h3 {
+    font-size: 20px; /* Ukuran font untuk sub-judul */
+    color: #3d3d3d; /* Warna teks sub-judul */
+    margin-bottom: 10px; /* Jarak bawah sub-judul */
+}
+
+.calculation-details p {
+    font-size: 16px; /* Ukuran font deskripsi */
+    line-height: 1.6; /* Jarak antar baris */
+    color: #3d3d3d; /* Warna teks deskripsi */
+    margin-bottom: 10px; /* Jarak bawah deskripsi */
+    text-align: justify;
+}
+
+.calculation-details pre {
+    background-color: #e8e8e8; /* Warna latar belakang rumus */
+    padding: 10px; /* Jarak di sekitar teks rumus */
+    border-radius: 4px; /* Sudut melengkung */
+    overflow-x: auto; /* Menghindari overflow teks horizontal */
+    margin-bottom: 10px; /* Jarak bawah rumus */
+    font-family: 'Lato', sans-serif;
     text-align: center;
 }
 
-/* Specific column styling */
-th:nth-child(2), td:nth-child(2) {
-    width: 20%;
-    text-align: left;
+.calculation-details ul {
+    list-style-type: disc; /* Tanda titik untuk daftar */
+    padding-left: 20px; /* Jarak kiri untuk daftar */
 }
 
-th:nth-child(n+3), td:nth-child(n+3) {
-    width: 6%;
+.calculation-details li {
+    margin-bottom: 8px; /* Jarak bawah untuk setiap item daftar */
+    font-size: 16px; /* Ukuran font item daftar */
+    color: #3d3d3d; /* Warna teks item daftar */
 }
 
-th:nth-child(1), td:nth-child(1) {
-    width: 4%;
-}
-
-td:not(:nth-child(2)) {
-    text-align: center;
-}
-
-/* Flexbox styling for additional elements */
+/* Styling untuk Flex Container */
 .flex-container {
     display: flex;
-    justify-content: space-between;
     gap: 20px;
+    align-items: stretch;
     padding: 20px;
-    margin: 50px; /* Jarak luar */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.calculator-container, .chart-container {
+    background-color: #3d3d3d;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-top: -20px;
 }
 
 .calculator-container {
-    flex: 0.4; /* Take up available space */
-    padding: 20px; /* Adjust padding as needed */
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    margin-left: 30px;
+    flex: 0.2;
 }
 
 .chart-container {
-    flex: 0.6; /* Increased from 1 to 0.6 */
-    padding: 20px 30px;
-    background-color: #3d3d3d;
-    border-radius: 10px;
-    margin-right: 30px;
+    flex: 0.8;
 }
 
-/* Input field styling */
+.calculator-container label {
+    color: #ffffff;
+    font-size: 0.8em;
+    gap: 10px;
+}
+
 .data-input {
-    width: 100%; /* Full width of the container */
-    box-sizing: border-box; /* Include padding in the width */
-    padding: 8px; /* Adjust padding inside the input fields */
-    margin: 5px 0; /* Spacing between input fields */
-    border: 1px solid #ccc; /* Border style */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #fff; /* Background color */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
     font-family: inherit;
-    font-size: 1em; /* Ensure consistent font size */
-    color: #000; /* Text color */
+    font-size: 1em;
+    color: #000;
 }
 
-#proyeksi .section-container {
+.calculate-button {
+    display: block;
+    width: 200px;
+    padding: 10px 15px;
+    margin: 20px auto 0;
     background-color: #3d3d3d;
-    height: 800px;
-}
-
-#proyeksi p,
-#proyeksi h2,
-#proyeksi h3 {
-    color: #ffffff; 
-}
-
-#kontak .section-container {
-    background-color: #ffffff;
-    padding: 20px;
-}
-
-#kontak p {
-    color: #3d3d3d; 
-}
-
-/* Flexbox untuk kotak kontak */
-.contact-boxes {
-    display: flex;
-    justify-content: space-between; /* Memastikan kotak tersebar rata */
-    flex-wrap: wrap; /* Membolehkan kotak bergulir ke baris baru jika diperlukan */
-    padding: 40px;
-}
-
-/* Setiap kotak kontak */
-.contact-box {
-    position: relative;
-    width: 300px; /* Lebar kotak */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Agar overlay tidak meluap */
-    border: 2px solid #D3D3D3; /* Border abu */
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
     text-align: center;
 }
 
-/* Gambar kontak */
+.calculate-button:hover {
+    background-color: #ffffff;
+    color: #3d3d3d;
+    border-color: #666;
+}
+
+#kontak .section-container {
+    background-color: #3d3d3d;
+    padding: 0;
+}
+
+#kontak h2 {
+    color: #ffffff;
+    padding-top: 40px; /* Sesuaikan nilai ini dengan kebutuhan */
+}
+
+
+.contact-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+.contact-box {
+    position: relative;
+    width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #D3D3D3;
+    text-align: center;
+}
+
 .contact-image {
-    position: relative; /* Agar overlay bisa diposisikan di atas gambar */
+    position: relative;
 }
 
 .contact-image img {
-    width: 100%; /* Memastikan gambar memenuhi lebar kotak */
-    height: 300px; /* Ukuran tinggi gambar */
-    object-fit: cover; /* Menjaga rasio aspek gambar tanpa merusak kualitas */
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
     display: block;
-    transition: opacity 0.3s; /* Transisi saat hover */
+    transition: opacity 0.3s;
 }
 
-/* Overlay abu dan ikon */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(128, 128, 128, 0.4); /* Warna abu transparan */
+    background-color: rgba(128, 128, 128, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Awalnya tersembunyi */
+    opacity: 0;
     transition: opacity 0.3s;
-    gap: 10px; /* Jarak antara ikon */
+    gap: 10px;
 }
 
-/* Ikon sosial */
 .social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Bulatkan ikon */
-    background-color: white; /* Latar belakang putih untuk ikon */
+    border-radius: 50%;
+    background-color: white;
     padding: 5px;
-    border: 2px solid #D3D3D3; /* Border abu untuk ikon */
+    border: 2px solid #D3D3D3;
 }
 
-/* Menampilkan ikon gambar */
 .social-icon img {
     width: 50%;
     height: 60%;
 }
 
 .social-icon:hover img {
-    transform: scale(1.1); /* Sedikit memperbesar ikon */
+    transform: scale(1.1);
 }
 
-/* Mengubah gambar saat di-hover */
 .social-icon.instagram:hover img {
     content: url('insta.png');
 }
@@ -308,19 +452,21 @@ td:not(:nth-child(2)) {
     content: url('linked.png');
 }
 
-/* Hover effect */
 .contact-image:hover .overlay {
-    opacity: 1; /* Menampilkan overlay saat hover */
+    opacity: 1;
 }
 
 .contact-image:hover img {
-    opacity: 0.3; /* Mengurangi visibilitas gambar saat hover */
+    opacity: 0.3;
 }
 
 .content, p {
     color: #ffffff;
     text-align: center;
     margin-bottom: 40px;
+}
+.contact-info h3 {
+    color: #ffffff
 }
 
 .h1, h2 {
@@ -329,7 +475,6 @@ td:not(:nth-child(2)) {
     margin-bottom: 40px;
     margin-top: -50px;
 }
-
 
 .arrows {
     display: flex;
@@ -416,9 +561,9 @@ td:not(:nth-child(2)) {
     color:#000;
 }
 
+
 .footer {
-    background-color: #3d3d3d;
-    color: #ffffff;
+    background-color: #ffffff;
     padding: 2vh 0;
     text-align: center;
     display: flex;
@@ -433,12 +578,193 @@ td:not(:nth-child(2)) {
 
   .footer p {
     margin-bottom: 5px; /* Jarak tambahan di bawah teks */
+    color: #3d3d3d
 }
-  
 
+/* Media Queries for Responsive Design */
 
+/* Untuk layar dengan lebar maksimal 768px (Tablet dan ponsel kecil) */
+@media screen and (max-width: 768px) {
+    /* Menampilkan hamburger menu */
+    .hamburger-menu {
+        display: block;
+    }
 
+    /* Sembunyikan navigasi default */
+    .nav-container {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
 
+    /* Tampilkan navigasi ketika hamburger menu aktif */
+    .nav-container.show {
+        display: flex;
+    }
 
+    .nav-container ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 
+    .nav-container li {
+        margin: 10px;
+        text-align: left;
+    }
 
+    .nav-container li a {
+        padding: 10px;
+    }
+
+    /* Sesuaikan gambar latar belakang */
+    #home .section-container {
+        background-position: center top;
+        background-size: cover;
+    }
+
+    /* Penyesuaian untuk bagian tentang */
+    #tentang {
+        padding: 0;
+        height: 600px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .about-text {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    /* Penyesuaian untuk tabel */
+    table {
+        width: 90%;
+        font-size: 0.9em;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    /* Penyesuaian untuk tombol */
+    .action-btn {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+
+    /* Penyesuaian untuk konten grafik dan kalkulator */
+    .flex-container {
+        flex-direction: column;
+    }
+
+    .calculator-container, .chart-container {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* Penyesuaian untuk kontak */
+    .contact-boxes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-box {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    /* Penyesuaian footer */
+    .footer {
+        font-size: 0.7em;
+        padding: 1vh 0;
+    }
+}
+
+/* Untuk layar dengan lebar maksimal 480px (Ponsel kecil) */
+@media screen and (max-width: 480px) {
+    /* Penyesuaian navigasi */
+    .nav-container li a {
+        padding: 15px;
+    }
+
+    /* Penyesuaian gambar latar belakang */
+    #home .section-container {
+        background-attachment: scroll; /* Menghindari gambar latar belakang tetap */
+    }
+
+    /* Penyesuaian untuk bagian tentang */
+    #tentang {
+        padding: 15px;
+        height: auto;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Penyesuaian untuk tabel */
+    table {
+        font-size: 0.8em;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    /* Penyesuaian untuk tombol */
+    .action-btn {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+
+    /* Penyesuaian untuk grafik dan kalkulator */
+    .calculator-container, .chart-container {
+        padding: 15px;
+    }
+
+    /* Penyesuaian untuk kontak */
+    .contact-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Penyesuaian footer */
+    .footer {
+        font-size: 0.6em;
+        padding: 0.5vh 0;
+    }
+}
+
+/* Untuk layar dengan lebar maksimal 320px (Ponsel sangat kecil) */
+@media screen and (max-width: 320px) {
+    .hamburger-menu {
+        width: 24px;
+        height: 2px;
+    }
+
+    .hamburger-menu .bar1,
+    .hamburger-menu .bar2,
+    .hamburger-menu .bar3 {
+        height: 1.5px;
+    }
+
+    .action-btn {
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+
+    .footer {
+        font-size: 0.5em;
+        padding: 0.3vh 0;
+    }
+}

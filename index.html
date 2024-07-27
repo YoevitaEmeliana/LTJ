@@ -5,25 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.4.1/decimal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Website Prediksi Pertumbuhan Ekonomi</title>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#tentang">Tentang Website</a></li>
-                <li><a href="#pertumbuhan">Pertumbuhan Ekonomi</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-        </nav>
-
-        <div class="hamburger-menu" onclick="toggleMenu()">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
+        <div class="header-container">
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+    
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#tentang">Tentang Website</a></li>
+                        <li><a href="#calculation-description">Parameter</a></li>
+                        <li><a href="#input-section">Kalkulator Pertumbuhan Ekonomi</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
+    
+    
 
     <section id="home">
         <div class="section-container">
@@ -67,315 +76,86 @@
         </div>
     </section>
 
-    <section id="pertumbuhan">
+    <section id="calculation-description">
         <div class="section-container">
-            <h2>Pertumbuhan Ekonomi</h2>
-            <h3> Tabel PDRB Asli Wilayah Penelitian Tiap Sektor</h3>
-            <table id="economic-growth-table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Faktor</th>
-                        <th>2013</th>
-                        <th>2014</th>
-                        <th>2015</th>
-                        <th>2016</th>
-                        <th>2017</th>
-                        <th>2018</th>
-                        <th>2019</th>
-                        <th>2020</th>
-                        <th>2021</th>
-                        <th>2022</th>
-                        <th>2023</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Membuat baris dari 1 sampai 17 -->
-                    <tr>
-                        <td>1</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                        <td contenteditable="true"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Penjelasan Parameter Perhitungan</h2>
+            
+            <div class="calculation-details">
+                <h3>Metode Gravitasi</h3>
+                <p>
+                    Metode Gravitasi, berdasarkan hukum gravitasi Newton, menyatakan bahwa objek dengan massa saling menarik satu sama lain sebanding dengan kuadrat jarak antara mereka. Formula yang digunakan untuk metode Gravitasi adalah:
+                </p>
+                <pre>
+    F = G * (M1 * M2) / r²
+                </pre>
+                <p><strong>Deskripsi:</strong></p>
+                <ul>
+                    <li><strong>F:</strong> Gravitasi (Pengaruh sektor yang diteliti terhadap pertumbuhan ekonomi)</li>
+                    <li><strong>G:</strong> Konstanta gravitasi</li>
+                    <li><strong>M1:</strong> Massa objek pertama (PDRB sektor yang diteliti)</li>
+                    <li><strong>M2:</strong> Massa objek kedua (PDRB sektor lain)</li>
+                    <li><strong>r²:</strong> Jarak antara dua objek (Penimbangan antara PDRB sektor lain terhadap sektor yang diteliti)</li>
+                </ul>
+            </div>
+            
+            <div class="calculation-details">
+                <h3>Penimbangan Jarak (r)</h3>
+                <p>
+                    Penimbangan jarak dilakukan menggunakan formula:
+                </p>
+                <pre>
+    r = PDRBX / PDRBY
+                </pre>
+                <p><strong>Deskripsi:</strong></p>
+                <ul>
+                    <li><strong>PDRBX:</strong> PDRB sektor di luar yang diteliti</li>
+                    <li><strong>PDRBY:</strong> GRDP sektor yang diteliti</li>
+                    <li><strong>r:</strong> Penimbangan antara GRDPX dan GRDPY</li>
+                </ul>
+            </div>
+            
+            <div class="calculation-details">
+                <h3>Peningkatan Tarikan Ekonomi</h3>
+                <p>
+                    Formula untuk menghitung peningkatan tarikan ekonomi adalah:
+                </p>
+                <pre>
+    ΔF = (F(t) - F(t-1)) / F(t)
+                </pre>
+                <p><strong>Deskripsi:</strong></p>
+                <ul>
+                    <li><strong>ΔF:</strong> Peningkatan tarikan ekonomi</li>
+                    <li><strong>F(t):</strong> Nilai tarikan ekonomi sektor pada tahun ini</li>
+                    <li><strong>F(t-1):</strong> Nilai tarikan ekonomi sektor pada tahun sebelumnya</li>
+                </ul>
+            </div>
         </div>
     </section>
     
+    
     <section id="input-section">
         <div class="section-container">
+            <h2>Kalkulator Pertumbuhan Ekonomi</h2>
             <section class="flex-container">
                 <!-- Kalkulator -->
                 <div class="calculator-container">
-                    <h2>Masukkan Data</h2>
                     <form id="revenue-form">
                         <div id="sector-fields">
-                            <!-- Kontainer untuk jumlah sektor -->
+                            <!-- Kontainer untuk nama sektor -->
                             <div class="form-group">
-                                <label for="sector-count">Jumlah Sektor:</label>
-                                <input type="number" id="sector-count" min="1" value="4" onchange="generateSectorInputs()">
+                                <label for="sector-name">Nama Sektor:</label>
+                                <input type="text" id="sector-name" placeholder="Nama Sektor">
                             </div>
                         </div>
-                        <div id="sector-inputs"></div>
                         <div id="input-fields">
                             <!-- Dinamis untuk tahun-tahun -->
                         </div>
-                        <button type="button" onclick="calculateProjection()">Hitung Proyeksi</button>
+                        <button type="button" class="calculate-button" onclick="calculateProjection()">Hitung Proyeksi</button>
                     </form>
                 </div>
             
                 <!-- Grafik -->
                 <div class="chart-container">
-                    <h2>Grafik Proyeksi Pertumbuhan Ekonomi (2024 - 2033)</h2>
                     <canvas id="growth-chart"></canvas> <!-- Elemen canvas untuk Chart.js -->
                 </div>
             </section>
@@ -387,7 +167,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Faktor</th>
+                                <th>Nama Sektor</th>
                                 <th>2024</th>
                                 <th>2025</th>
                                 <th>2026</th>
@@ -408,8 +188,349 @@
             </section>
         </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
+    <section id="pertumbuhan">
+        <div class="section-container">
+            <h2>Pertumbuhan Ekonomi</h2>
+            <table id="economic-growth-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">No</th>
+                        <th rowspan="2">Nama Sektor</th>
+                        <th colspan="2"><div contenteditable="true">2013</div></th>
+                        <th colspan="2"><div contenteditable="true">2018</div></th>
+                        <th colspan="2"><div contenteditable="true">2023</div></th>
+                        <th colspan="2"><div contenteditable="true">2025</div></th>
+                        <th colspan="2"><div contenteditable="true">2028</div></th>
+                        <th colspan="2"><div contenteditable="true">2033</div></th>
+                    </tr>
+                    <tr>
+                        <th>Rupiah</th>
+                        <th>%</th>
+                        <th>Rupiah</th>
+                        <th>%</th>
+                        <th>Rupiah</th>
+                        <th>%</th>
+                        <th>Rupiah</th>
+                        <th>%</th>
+                        <th>Rupiah</th>
+                        <th>%</th>
+                        <th>Rupiah</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td contenteditable="true">1</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2013"></td>
+                        <td class="percent" data-year="2013"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2018"></td>
+                        <td class="percent" data-year="2018"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2023"></td>
+                        <td class="percent" data-year="2023"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2025"></td>
+                        <td class="percent" data-year="2025"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2028"></td>
+                        <td class="percent" data-year="2028"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2033"></td>
+                        <td class="percent" data-year="2033"></td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">2</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2013"></td>
+                        <td class="percent" data-year="2013"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2018"></td>
+                        <td class="percent" data-year="2018"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2023"></td>
+                        <td class="percent" data-year="2023"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2025"></td>
+                        <td class="percent" data-year="2025"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2028"></td>
+                        <td class="percent" data-year="2028"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2033"></td>
+                        <td class="percent" data-year="2033"></td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">3</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2013"></td>
+                        <td class="percent" data-year="2013"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2018"></td>
+                        <td class="percent" data-year="2018"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2023"></td>
+                        <td class="percent" data-year="2023"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2025"></td>
+                        <td class="percent" data-year="2025"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2028"></td>
+                        <td class="percent" data-year="2028"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2033"></td>
+                        <td class="percent" data-year="2033"></td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">4</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2013"></td>
+                        <td class="percent" data-year="2013"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2018"></td>
+                        <td class="percent" data-year="2018"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2023"></td>
+                        <td class="percent" data-year="2023"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2025"></td>
+                        <td class="percent" data-year="2025"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2028"></td>
+                        <td class="percent" data-year="2028"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2033"></td>
+                        <td class="percent" data-year="2033"></td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">5</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2013"></td>
+                        <td class="percent" data-year="2013"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2018"></td>
+                        <td class="percent" data-year="2018"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2023"></td>
+                        <td class="percent" data-year="2023"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2025"></td>
+                        <td class="percent" data-year="2025"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2028"></td>
+                        <td class="percent" data-year="2028"></td>
+                        <td contenteditable="true" class="rupiah" data-year="2033"></td>
+                        <td class="percent" data-year="2033"></td>
+                    </tr>
+                    <!-- Lakukan hal yang sama untuk baris lainnya -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Total PDRB</td>
+                        <td id="total-2013-rupiah">0</td>
+                        <td id="total-2013-percent">0</td>
+                        <td id="total-2018-rupiah">0</td>
+                        <td id="total-2018-percent">0</td>
+                        <td id="total-2023-rupiah">0</td>
+                        <td id="total-2023-percent">0</td>
+                        <td id="total-2025-rupiah">0</td>
+                        <td id="total-2025-percent">0</td>
+                        <td id="total-2028-rupiah">0</td>
+                        <td id="total-2028-percent">0</td>
+                        <td id="total-2033-rupiah">0</td>
+                        <td id="total-2033-percent">0</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+    
+    <section id="hasil-pembobotan">
+        <div class="section-container">
+            <h2>Hasil Pembobotan</h2>
+            <table id="weighting-results-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Sektor</th>
+                        <th contenteditable="true">2025</th>
+                        <th contenteditable="true">2028</th>
+                        <th contenteditable="true">2033</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                        <td contenteditable="true" oninput="calculate(this)"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="tarikan-ekonomi">
+        <div class="section-container">
+            <h2>Tarikan Ekonomi</h2>
+            <table id="economic-pull-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Sektor</th>
+                        <th contenteditable="true">2025</th>
+                        <th contenteditable="true">2028</th>
+                        <th contenteditable="true">2033</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                        <td contenteditable="true" onkeydown="calculate(event)"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section id="peningkatan-tarikan-ekonomi">
+        <div class="section-container">
+            <h2>Peningkatan Tarikan Ekonomi</h2>
+            <table id="economic-increase-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Sektor</th>
+                        <th contenteditable="true">2025</th>
+                        <th contenteditable="true">2028</th>
+                        <th contenteditable="true">2033</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Add rows as needed -->
+                    <tr>
+                        <td>1</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                    </tr> <tr>
+                        <td>4</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                    </tr> <tr>
+                        <td>5</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                        <td contenteditable="true" oninput="calculatePercentage(this)"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="production-input-section">
+        <div class="section-container">
+            <h2>Produksi per Tahun</h2>
+            <section class="flex-container">
+                <!-- Kalkulator -->
+                <div class="calculator-container">
+                    <form id="production-form">
+                        <div class="form-group">
+                            <label for="initial-amount">Initial Amount (tons):</label>
+                            <input type="number" id="initial-amount-production" >
+                        </div>
+                        <div class="form-group">
+                            <label for="remaining-amount">Remaining After Years (tons):</label>
+                            <input type="number" id="remaining-amount-production" >
+                        </div>
+                        <div class="form-group">
+                            <label for="time-period">Time (Years):</label>
+                            <input type="number" id="time-period-production">
+                        </div>
+                        <button type="button" class="calculate-button" onclick="calculateProduction()">Calculate & Plot</button>
+                    </form>
+                </div>
+            
+                <!-- Grafik -->
+                <div class="chart-container">
+                    <canvas id="production-chart"></canvas> <!-- Elemen canvas untuk Chart.js -->
+                </div>
+            </section>
+            
+            <section id="production-projection">
+                <div class="section-container">
+                    <h2>Proyeksi Produksi</h2>
+                    <table id="production-projection-table">
+                        <thead>
+                            <tr>
+                                <th>Tahun</th>
+                                <th>Jumlah Produksi (tons)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="production-projected-data">
+                            <!-- Rows will be dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </section>
     
     
     <section id="kontak">
@@ -420,10 +541,10 @@
                     <div class="contact-image">
                         <img src="Geofisika.png" alt="Geofisika 1">
                         <div class="overlay">
-                            <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+                            <a href="https://www.instagram.com/benedictalovenim?igsh=MW1uNGU1N2NoZm9xcw==" target="_blank" class="social-icon instagram">
                                 <img src="insta.png" alt="Instagram">
                             </a>
-                            <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">
+                            <a href="https://id.linkedin.com/in/benedictalovenim" target="_blank" class="social-icon linkedin">
                                 <img src="linked.png" alt="LinkedIn">
                             </a>
                         </div>
@@ -435,12 +556,12 @@
                 </div>
                 <div class="contact-box">
                     <div class="contact-image">
-                        <img src="Geofisika.png" alt="Geofisika 2">
+                        <img src="Vt.png" alt="Geofisika 2">
                         <div class="overlay">
-                            <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+                            <a href="https://www.instagram.com/pinemartn?igsh=MW84ZG5seTZzaDliOA==" target="_blank" class="social-icon instagram">
                                 <img src="insta.png" alt="Instagram">
                             </a>
-                            <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">
+                            <a href="https://id.linkedin.com/in/yoevitaemeliana" target="_blank" class="social-icon linkedin">
                                 <img src="linked.png" alt="LinkedIn">
                             </a>
                             
@@ -455,7 +576,7 @@
                     <div class="contact-image">
                         <img src="Geofisika.png" alt="Geofisika 3">
                         <div class="overlay">
-                            <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+                            <a href="https://www.instagram.com/maharaniar9?igsh=MXE0dnVpZ2ExMDh0dA==" target="_blank" class="social-icon instagram">
                                 <img src="insta.png" alt="Instagram">
                             </a>
                             <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">
