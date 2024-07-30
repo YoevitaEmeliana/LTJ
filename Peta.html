@@ -57,7 +57,7 @@
 <body>
 
     <div id="controls">
-        <input type="text" id="search" placeholder="Cari wilayah...">
+        <input type="text" id="search" placeholder="Cari wilayah dengan Potensi LTJ...">
         <button onclick="searchRegion()">Cari</button>
     </div>
     <div id="map"></div>
@@ -67,19 +67,19 @@
 
     <script>
         // Koordinat awal
-        const solokCoords = [-0.5507, 100.6143];
-        const houseIcon = L.icon({
-            iconUrl: 'home.png',
-            iconSize: [30, 30], // Ukuran ikon
-            iconAnchor: [15, 30] // Titik tumpuan ikon
-        });
+const mamujuCoords = [-2.6770, 118.8867];
+const houseIcon = L.icon({
+    iconUrl: 'home.png',
+    iconSize: [30, 30], // Ukuran ikon
+    iconAnchor: [15, 30] // Titik tumpuan ikon
+});
 
-        // Inisialisasi peta dan arahkan ke Solok
-        const map = L.map('map').setView(solokCoords, 5);
+// Inisialisasi peta dan arahkan ke Mamuju
+const map = L.map('map').setView(mamujuCoords, 5);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
 
         // URL data GeoJSON
         const geojsonUrl = 'indonesia-prov.json';
