@@ -12,6 +12,7 @@
 <body>
     <header>
         <div class="header-container">
+            <img src="logo.png" alt="Logo" class="logo">
             <div class="hamburger-menu" onclick="toggleMenu()">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
@@ -22,7 +23,7 @@
                 <nav>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#tentang">Tentang Website</a></li>
+                        <li><a href="#tentang">Peta Wilayah</a></li>
                         <li><a href="#calculation-description">Parameter</a></li>
                         <li><a href="#input-section">Kalkulator Pertumbuhan Ekonomi</a></li>
                         <li><a href="#kontak">Kontak</a></li>
@@ -36,11 +37,10 @@
 
     <section id="home">
         <div class="section-container">
-            <div class="content">
+            <div class="content-h">
                 <h1>NEOPIONEERS WEB</h1>
                     <p>Selamat datang di Kalkulator Pertumbuhan Ekonomi Gravity, sebuah alat inovatif yang dirancang untuk menganalisis dampak PDB LTJ yang baru dikembangkan terhadap sektor PDB lainnya. Melalui visualisasi interaktif, Anda dapat mengevaluasi keuntungan yang diperoleh dibandingkan dengan investasi awal. Gunakan prediksi akurat kami untuk membuat keputusan ekonomi yang lebih efektif.</p>
                 </div>
-                
                 <div class="buttons">
                     <button class="action-btn mulai">Mulai</button>
                     <button class="action-btn pelajari">Pelajari</button>
@@ -57,14 +57,8 @@
 
                 </div>
                 <div class="about-text">
-                    <h2>Tentang Website</h2>
-                    <p>NAMA WEBSITE merupakan platform yang membantu Anda untuk mengetahui nilai prediksi pendapatan dan pertumbuhan ekonomi suatu wilayah melalui data yang komprehensif dan analisis yang mendalam.</p>
-                    <ul class="features-list">
-                        <li>✔️ Analisis data yang akurat dan komprehensif</li>
-                        <li>✔️ Interface yang mudah digunakan</li>
-                        <li>✔️ Visualisasi data yang informatif</li>
-                        <li>✔️ Dukungan teknis yang responsif</li>
-                    </ul>
+                    <h2>Peta Wilayah Logam Tanah Jarang</h2>
+                    <p>Indonesia adalah salah satu negara dengan potensi cadangan mineral yang sangat besar, bahkan selalu masuk dalam peringkat 10 besar dunia. Dengan potensi tersebut, sektor pertambangan memainkan peran penting dalam mendorong pertumbuhan ekonomi nasional. Logam tanah jarang adalah mineral yang ditemukan bersama dengan emas, perak, timah, tembaga, dan lain-lain. LTJ terdiri dari 17 unsur dalam tabel periodik, 15 di antaranya adalah lanthanida, serta skandium (Sc) dan yttrium (Y). Cadangan REE di Indonesia diperkirakan mencapai 200.000 ton, dengan daerah potensial seperti Bangka Belitung, Kalimantan Barat, Sulawesi Tengah, dan Sumatera Utara. Kabupaten Tapanuli Utara, Sumatera Utara, dikenal memiliki potensi besar untuk sumber daya logam tanah jarang. Salah satu LTJ yang ditemukan pada Kabupaten Tapanuli Utara adalah Neodymium. Neodymium banyak digunakan untuk berbagai teknologi modern, sehingga neodymium memiliki potensi besar dalam pengembangan industri logam tanah jarang.</p>
                 </div>
             </div>
         </div>
@@ -486,15 +480,15 @@
                 <div class="calculator-container">
                     <form id="production-form">
                         <div class="form-group">
-                            <label for="initial-amount">Initial Amount (tons):</label>
+                            <label for="initial-amount">Jumlah Awal (Ton):</label>
                             <input type="number" id="initial-amount-production" >
                         </div>
                         <div class="form-group">
-                            <label for="remaining-amount">Remaining After Years (tons):</label>
+                            <label for="remaining-amount">Sisa Setelah Tahun (Ton):</label>
                             <input type="number" id="remaining-amount-production" >
                         </div>
                         <div class="form-group">
-                            <label for="time-period">Time (Years):</label>
+                            <label for="time-period">Waktu (Tahun):</label>
                             <input type="number" id="time-period-production">
                         </div>
                         <button type="button" class="calculate-button" onclick="calculateProduction()">Calculate & Plot</button>
@@ -573,7 +567,7 @@
                             <a href="https://www.instagram.com/maharaniar9?igsh=MXE0dnVpZ2ExMDh0dA==" target="_blank" class="social-icon instagram">
                                 <img src="insta.png" alt="Instagram">
                             </a>
-                            <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">
+                            <a href="https://id.linkedin.com/in/maharani-arisandy-82116b252" target="_blank" class="social-icon linkedin">
                                 <img src="linked.png" alt="LinkedIn">
                             </a>
                             
@@ -589,7 +583,7 @@
     </section>
     
     <footer class="footer">
-        <p>Copyright © 2024 Department of Geophysics FMIPA Unpad</p>
+        <p>Copyright © 2024 Departemen Geofisika FMIPA Universitas Padjadjaran</p>
     </footer>
 
     <script src="index.js"></script>

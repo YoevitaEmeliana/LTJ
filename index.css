@@ -7,8 +7,6 @@ html, body {
     background-color: white;
     height: 100%;
     overflow-x: hidden;
-    background: url("isaac.png") no-repeat center center fixed;
-    background-size: cover;
 }
 
 .header-container {
@@ -16,11 +14,17 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #3d3d3d;
     padding: 10px 0;
     z-index: 101;
     display: flex;
+    position: fixed;
     align-items: center;
+}
+
+.logo {
+    height: 40px; /* Sesuaikan ukuran logo sesuai kebutuhan */
+    margin-left: 70px;
 }
 
 .hamburger-menu {
@@ -73,15 +77,15 @@ html, body {
 
 .nav-container li a {
     text-decoration: none;
-    color: #3d3d3d; /* Default text color */
+    color: #ffffff; /* Default text color */
     padding: 5px 10px;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 5px; /* Rounded corners for the background box */
 }
 
 .nav-container li a:hover {
-    background-color: #3d3d3d; /* Gray background box */
-    color: rgb(0, 0, 0); /* White text on hover */
+    background-color: #ffffff; /* Gray background box */
+    color: #3d3d3d; /* White text on hover */
 }
 
 
@@ -94,9 +98,10 @@ html, body {
 
 #home .section-container {
     color: rgb(0, 0, 0);
-    margin-right: 400px;
-    margin-left:100px;
     font-size: large;
+    background: url("isaac.png") no-repeat center center fixed;
+    background-size: cover;
+    height: 80vh; /* Pastikan elemen memiliki tinggi yang cukup */
 }
 
 #tentang .section-container {
@@ -155,10 +160,11 @@ html, body {
 
 .about-text h2 {
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .about-text p {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.6;
     text-align: justify;
 }
@@ -391,7 +397,7 @@ th, tfoot {
 
 .contact-box {
     position: relative;
-    width: 300px;
+    width: 350px;
     border-radius: 8px;
     overflow: hidden;
     border: 2px solid #D3D3D3;
@@ -424,6 +430,7 @@ th, tfoot {
     transition: opacity 0.3s;
     gap: 10px;
 }
+
 
 .social-icon {
     display: flex;
@@ -462,13 +469,29 @@ th, tfoot {
     opacity: 0.3;
 }
 
-.content, p {
+.content-h p, .content-h h1 {
+    color: #000000;
+    text-align: center;
+    justify-content: center; /* Rata tengah secara vertikal */
+    align-items: center; /* Rata tengah secara horizontal */
+    margin-right: 60vh;
+    margin-left: 5vh;
+    margin-bottom: 20px;
+    margin-top: 60px;
+}
+
+.content p {
     color: #000000;
     text-align: center;
     margin-bottom: 40px;
+    margin-right: 15%;
 }
-.contact-info h3 {
-    color: #ffffff
+
+.contact-info h3, .contact-info p {
+    color: #ffffff;
+    text-align: center;
+    margin-left: 0;
+    margin-right:0;
 }
 
 .h1, h2 {
@@ -478,62 +501,10 @@ th, tfoot {
     margin-top: -50px;
 }
 
-.arrows {
-    display: flex;
-    justify-content: space-between; /* Panah tersebar merata di kanan dan kiri */
-    align-items: center;
-    padding: 0 70px; /* Jarak dari tepi kontainer */
-    margin-top: 20px;
-}
-
-.arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none; /* Menghilangkan background default pada button */
-    border: none; /* Menghilangkan border default pada button */
-    cursor: pointer;
-    padding: 0; /* Menghilangkan padding default pada button */
-}
-
-.circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px; /* Ukuran lingkaran */
-    height: 60px; /* Ukuran lingkaran */
-    border-radius: 50%; /* Membuat lingkaran */
-    background-color: transparent; /* Lingkaran awalnya transparan */
-    color: white; /* Warna panah */
-    font-size: 3em; /* Ukuran font panah */
-    transition: background-color 0.3s, color 0.3s; /* Transisi warna saat hover */
-}
-
-.arrow:hover .circle {
-    background-color: rgba(255, 255, 255, 0.5); /* Warna lingkaran saat hover */
-    color: #000; /* Warna panah saat hover */
-}
-
-.arrow.prev {
-    margin-right: 10px; /* Jarak antara panah kiri dan teks */
-}
-
-.arrow.next {
-    margin-left: 10px; /* Jarak antara panah kanan dan teks */
-}
-
-
-.arrows p {
-    font-size: 1.5em; /* Ukuran font teks */
-    color: white; /* Warna teks */
-    text-align: center; /* Memastikan teks berada di tengah */
-    margin: 0; /* Menghapus margin default */
-    padding: 0 20px; /* Jarak kiri dan kanan teks */
-}
 
 .buttons {
     margin-top: 20px;
-    margin-left: 330px;
+    margin-left: 65vh;
 }
 
 
@@ -552,14 +523,14 @@ th, tfoot {
 
 /* Gaya saat hover untuk tombol Mulai */
 .action-btn.mulai:hover {
-    background-color: #ffffff; /* Warna latar belakang saat hover */
+    background-color: #c9c8c8; /* Warna latar belakang saat hover */
     transform: scale(1.05); /* Zoom sedikit saat hover */
     color:#000;
 }
 
 /* Gaya saat hover untuk tombol Pelajari */
 .action-btn.pelajari:hover {
-    background-color: #ffffff; /* Warna latar belakang saat hover */
+    background-color: #c9c8c8; /* Warna latar belakang saat hover */
     transform: scale(1.05); /* Zoom sedikit saat hover */
     color:#000;
 }

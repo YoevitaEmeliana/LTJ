@@ -1,18 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const nextButton = document.querySelector('.next');
-    const prevButton = document.querySelector('.prev ');
-    const contentText = document.querySelector('#home .content p');
-
-    nextButton.addEventListener('click', function() {
-        contentText.textContent = 'NAMA WEBSITE dibuat dalam bentuk web untuk memudahkan ...';
-    });
-
-    prevButton.addEventListener('click', function() {
-        contentText.textContent = 'Kami dapat membantu Anda untuk mengetahui nilai prediksi pendapatan dan pertumbuhan ekonomi suatu wilayah melalui data';
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
     const mulaiButton = document.querySelector('.action-btn.mulai');
     const pelajariButton = document.querySelector('.action-btn.pelajari');
 
@@ -138,7 +124,7 @@ function generateYearInputs() {
     const inputFields = document.getElementById('input-fields');
     inputFields.innerHTML = ''; // Hapus input tahun sebelumnya
 
-    const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+    const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
     years.forEach(year => {
         const inputDiv = document.createElement('div');
         inputDiv.innerHTML = `
@@ -148,6 +134,13 @@ function generateYearInputs() {
         inputFields.appendChild(inputDiv);
     });
 }
+
+// Inisialisasi form input saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    generateSectorInputs(); // Initial call to generate inputs based on default sector count
+    generateYearInputs();   // Initial call to generate inputs for years
+    loadSavedData();        // Load saved data from localStorage
+});
 
 // Fungsi untuk melakukan regresi linier
 function linearRegression(x, y) {
@@ -547,6 +540,31 @@ function calculateProduction() {
             tableBody.insertAdjacentHTML('beforeend', row);
         }
     }
+
+// Function to save production input data to localStorage
+function saveProductionData() {
+    const initialAmount = document.getElementById('initial-amount-production').value;
+    const remainingAmount = document.getElementById('remaining-amount-production').value;
+    const timePeriod = document.getElementById('time-period-production').value;
+
+    localStorage.setItem('initialAmount', initialAmount);
+    localStorage.setItem('remainingAmount', remainingAmount);
+    localStorage.setItem('timePeriod', timePeriod);
+}
+
+// Save data to localStorage after calculation
+saveProductionData();
+}
+
+// Function to load production input data from localStorage
+function loadProductionData() {
+    const initialAmount = localStorage.getItem('initialAmount');
+    const remainingAmount = localStorage.getItem('remainingAmount');
+    const timePeriod = localStorage.getItem('timePeriod');
+
+    if (initialAmount) document.getElementById('initial-amount-production').value = initialAmount;
+    if (remainingAmount) document.getElementById('remaining-amount-production').value = remainingAmount;
+    if (timePeriod) document.getElementById('time-period-production').value = timePeriod;
 }
 
 // Toggle menu state
@@ -572,4 +590,219 @@ document.addEventListener('click', function(event) {
 // Prevent toggleMenu function from closing the menu when clicking on hamburger icon
 document.querySelector('.hamburger-menu').addEventListener('click', function(event) {
     event.stopPropagation(); // Stop event from propagating to the document
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+     // Memuat data yang disimpan dari localStorage
+     function loadSavedData() {
+        const sectorName = localStorage.getItem('sectorName');
+        if (sectorName) {
+            document.getElementById('sector-name').value = sectorName;
+        }
+
+        const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+        years.forEach(year => {
+            const revenue = localStorage.getItem(`revenue-${year}`);
+            if (revenue) {
+                document.getElementById(`revenue-${year}`).value = revenue;
+            }
+        });
+    }
+
+    // Menambahkan event listener untuk perubahan data dan menyimpannya
+    function saveData() {
+        const sectorName = document.getElementById('sector-name').value;
+        localStorage.setItem('sectorName', sectorName);
+
+        const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+        years.forEach(year => {
+            const revenue = document.getElementById(`revenue-${year}`).value;
+            localStorage.setItem(`revenue-${year}`, revenue);
+        });
+    }
+
+    document.querySelectorAll('.revenue-input').forEach(input => {
+        input.addEventListener('input', saveData);
+    });
+
+    document.querySelector('#sector-name').addEventListener('input', saveData);
+
+    // Function to save data from a table to localStorage
+    function saveTableData(tableId, storageKey) {
+        const table = document.getElementById(tableId);
+        const rows = table.querySelectorAll('tbody tr');
+        const data = [];
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            const rowData = [];
+            cells.forEach(cell => {
+                rowData.push(cell.textContent.trim());
+            });
+            data.push(rowData);
+        });
+
+        localStorage.setItem(storageKey, JSON.stringify(data));
+    }
+
+    // Function to load data from localStorage to a table
+    function loadTableData(tableId, storageKey) {
+        const table = document.getElementById(tableId);
+        const data = JSON.parse(localStorage.getItem(storageKey));
+
+        if (data) {
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach((row, rowIndex) => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach((cell, cellIndex) => {
+                    cell.textContent = data[rowIndex][cellIndex] || '';
+                });
+            });
+        }
+    }
+
+    // Function to save all tables
+    function saveAllTables() {
+        const tableIds = [
+            'economic-growth-table',
+            'projected-growth-table',
+            'weighting-results-table',
+            'production-projected-data',
+            'economic-increase-table',
+            'economic-pull-table'
+        ];
+        const storageKeys = [
+            'economicGrowthData',
+            'projectedGrowthData',
+            'weightingResultsData',
+            'productionProjectedData',
+            'economicIncreaseData',
+            'economicPullData'
+        ];
+
+        tableIds.forEach((id, index) => {
+            saveTableData(id, storageKeys[index]);
+        });
+    }
+
+    // Function to load all tables
+    function loadAllTables() {
+        const tableIds = [
+            'economic-growth-table',
+            'projected-growth-table',
+            'weighting-results-table',
+            'production-projected-data',
+            'economic-increase-table',
+            'economic-pull-table'
+        ];
+        const storageKeys = [
+            'economicGrowthData',
+            'projectedGrowthData',
+            'weightingResultsData',
+            'productionProjectedData',
+            'economicIncreaseData',
+            'economicPullData'
+        ];
+
+        tableIds.forEach((id, index) => {
+            loadTableData(id, storageKeys[index]);
+        });
+    }
+
+    // Function to save charts
+    function saveChartData(chartId, storageKey) {
+        const chart = document.getElementById(chartId);
+        if (chart && chart.toDataURL) {
+            localStorage.setItem(storageKey, chart.toDataURL());
+        }
+    }
+
+    // Function to load charts
+    function loadChartData(chartId, storageKey) {
+        const chart = document.getElementById(chartId);
+        const dataURL = localStorage.getItem(storageKey);
+        if (chart && dataURL) {
+            chart.src = dataURL;
+        }
+    }
+
+    // Function to save all charts
+    function saveAllCharts() {
+        const chartIds = [
+            'economic-growth-chart',
+            'projected-growth-chart',
+            'growth-chart',
+            'production-chart'
+        ];
+        const storageKeys = [
+            'economicGrowthChartData',
+            'projectedGrowthChartData',
+            'growthChartData',
+            'productionChartData'
+        ];
+
+        chartIds.forEach((id, index) => {
+            saveChartData(id, storageKeys[index]);
+        });
+    }
+
+    // Function to load all charts
+    function loadAllCharts() {
+        const chartIds = [
+            'economic-growth-chart',
+            'projected-growth-chart',
+            'growth-chart',
+            'production-chart'
+        ];
+        const storageKeys = [
+            'economicGrowthChartData',
+            'projectedGrowthChartData',
+            'growthChartData',
+            'productionChartData'
+        ];
+
+        chartIds.forEach((id, index) => {
+            loadChartData(id, storageKeys[index]);
+        });
+    }
+
+    // Add event listeners to save data on input change
+    document.querySelectorAll('table').forEach(table => {
+        table.addEventListener('input', () => {
+            saveAllTables();
+        });
+    });
+
+    // Add event listener to save chart data on change
+    document.querySelectorAll('canvas').forEach(canvas => {
+        // Note: Canvas does not have a 'change' event, using click event as an alternative
+        canvas.addEventListener('click', () => {
+            saveAllCharts();
+        });
+    });
+
+        // Add event listeners to save data on input change
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => {
+                saveProductionData(); // Save production data on input change
+            });
+        });
+
+        // Add event listeners to save data on input change
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+            saveData(); // Save production data on input change
+        });
+    });
+
+    // Initial load of all tables and charts
+    loadAllTables();
+    loadAllCharts();
+    loadProductionData(); // Load production data
+    loadSavedData(); // Load saved data from localStorage
+
+
+    // Call these functions initially to populate the totals and projections
+    calculateTotals();
+    calculateProjection();
 });
