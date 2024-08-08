@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pelajariButton = document.querySelector('.action-btn.pelajari');
 
     mulaiButton.addEventListener('click', function() {
-        document.getElementById('pertumbuhan').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('input-section').scrollIntoView({ behavior: 'smooth' });
     });
 
     pelajariButton.addEventListener('click', function() {
