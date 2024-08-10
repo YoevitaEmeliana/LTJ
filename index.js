@@ -806,3 +806,142 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateTotals();
     calculateProjection();
 });
+
+
+ // Koordinat awal
+const mamujuCoords = [-2.6770, 118.8867];
+const houseIcon = L.icon({
+    iconUrl: 'home.png',
+    iconSize: [30, 30], // Ukuran ikon
+    iconAnchor: [15, 30] // Titik tumpuan ikon
+});
+
+// Inisialisasi peta dan arahkan ke Mamuju
+const map = L.map('map').setView(mamujuCoords, 5);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+        // URL data GeoJSON
+        const geojsonUrl = 'indonesia-prov.json';
+        const RedUrl = 'PetaPotensiLTJ.json';
+
+        let regionsData = [];
+        let activePolygon;
+        let currentRegion;
+        let income = 0;
+
+        function fetchData(url) {
+            return fetch(url).then(response => response.json());
+        }
+
+        // Mengambil data GeoJSON dan menambahkannya ke peta
+        fetchData(geojsonUrl)
+        .then(geojsonData => {
+            L.geoJSON(geojsonData, {
+                style: {
+                    color: 'yellow',
+                    weight: 2
+                }
+            }).addTo(map);
+        })
+
+        fetchData(RedUrl)
+        .then(geojsonData => {
+            L.geoJSON(geojsonData, {
+                style: {
+                    color: 'red',
+                    weight: 1
+                }
+            }).addTo(map);
+            
+            // Mengambil data dari file JSON lainnya
+            const provincesUrl = 'provinces.json';
+            const regenciesUrl = 'regencies.json';
+            const villagesUrl = 'villages.json';
+            const districtsUrl = 'districts.json';
+
+            return Promise.all([
+                fetchData(provincesUrl),
+                fetchData(regenciesUrl),
+                fetchData(villagesUrl),
+                fetchData(districtsUrl)
+            ]);
+        })
+        .then(([provinces, regencies, villages, districts]) => {
+            regionsData = [
+                ...provinces,
+                ...regencies,
+                ...villages,
+                ...districts
+            ];
+
+            // Menambahkan fitur pencarian
+            const searchControl = new L.Control.Search({
+                layer: L.featureGroup(), // Menggunakan featureGroup kosong untuk pencarian
+                propertyName: 'name',
+                zoom: 8,
+                initial: false,
+                marker: false,
+                moveToLocation: function(latlng, title, map) {
+                    map.setView(latlng, 8);
+                }
+            });
+
+            map.addControl(searchControl);
+        })
+        .catch(err => console.error(err));
+
+        // Fungsi pencarian wilayah
+        function searchRegion() {
+            const searchInput = document.getElementById('search').value.toUpperCase();
+            currentRegion = regionsData.find(region => region.name.toUpperCase() === searchInput);
+
+            if (currentRegion) {
+                if (activePolygon) {
+                    activePolygon.remove();
+                }
+                map.setView([currentRegion.latitude, currentRegion.longitude], 8);
+
+                if (currentRegion.coordinates) {
+                    const polygon = L.polygon(currentRegion.coordinates, { color: 'red', weight: 2 }).addTo(map);
+                    polygon.bindPopup(`<b>${currentRegion.name}</b>`).openPopup();
+                    activePolygon = polygon;
+                } else {
+                    L.popup()
+                        .setLatLng([currentRegion.latitude, currentRegion.longitude])
+                        .setContent(`<b>${currentRegion.name}</b>`)
+                        .openOn(map);
+                }
+            } else {
+                alert('Wilayah tidak ditemukan!');
+            }
+        }
+
+        // Fungsi untuk menambah ikon rumah
+        function increaseIncome() {
+            if (!currentRegion) {
+                alert('Cari wilayah terlebih dahulu!');
+                return;
+            }
+
+            income += 10; // Misalnya, menambah 10 milyar setiap kali tombol ditekan
+
+            // Menghapus ikon rumah lama
+            map.eachLayer(layer => {
+                if (layer instanceof L.Marker && layer.options.icon === houseIcon) {
+                    layer.remove();
+                }
+            });
+
+            // Menambahkan ikon rumah berdasarkan pendapatan
+            const numberOfHouses = Math.floor(income / 10); // 1 rumah per 10 milyar
+
+            for (let i = 0; i < numberOfHouses; i++) {
+                const offset = Math.random() * 0.01; // Offset acak untuk posisi rumah
+                const lat = currentRegion.latitude + (Math.random() - 0.5) * offset;
+                const lng = currentRegion.longitude + (Math.random() - 0.5) * offset;
+                L.marker([lat, lng], { icon: houseIcon }).addTo(map);
+            }
+        }

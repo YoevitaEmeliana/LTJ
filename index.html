@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.4.1/decimal.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
     <title>Website Prediksi Pertumbuhan Ekonomi</title>
 </head>
 <body>
@@ -52,17 +54,25 @@
     <section id="tentang">
         <div class="section-container">
             <div class="about-content">
-                <div class="about-image">
-                    <iframe src="peta.html" width="500" height="500px" frameborder="0" allowfullscreen></iframe>
-
+                <div class="about-left">
+                    <div id="controls">
+                        <input type="text" id="search" placeholder="Cari wilayah dengan Potensi LTJ...">
+                        <button onclick="searchRegion()">Cari</button>
+                    </div>
+                    <div id="map"></div>
                 </div>
-                <div class="about-text">
+                <div class="about-right">
                     <h2>Peta Wilayah Logam Tanah Jarang</h2>
                     <p>Indonesia adalah salah satu negara dengan potensi cadangan mineral yang sangat besar, bahkan selalu masuk dalam peringkat 10 besar dunia. Dengan potensi tersebut, sektor pertambangan memainkan peran penting dalam mendorong pertumbuhan ekonomi nasional. Logam tanah jarang adalah mineral yang ditemukan bersama dengan emas, perak, timah, tembaga, dan lain-lain. LTJ terdiri dari 17 unsur dalam tabel periodik, 15 di antaranya adalah lanthanida, serta skandium (Sc) dan yttrium (Y). Cadangan REE di Indonesia diperkirakan mencapai 200.000 ton, dengan daerah potensial seperti Bangka Belitung, Kalimantan Barat, Sulawesi Tengah, dan Sumatera Utara. Kabupaten Tapanuli Utara, Sumatera Utara, dikenal memiliki potensi besar untuk sumber daya logam tanah jarang. Salah satu LTJ yang ditemukan pada Kabupaten Tapanuli Utara adalah Neodymium. Neodymium banyak digunakan untuk berbagai teknologi modern, sehingga neodymium memiliki potensi besar dalam pengembangan industri logam tanah jarang.</p>
                 </div>
             </div>
         </div>
+    
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.js"></script>
     </section>
+    
+    
 
     <section id="calculation-description">
         <div class="section-container">

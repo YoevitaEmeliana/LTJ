@@ -104,16 +104,6 @@ html, body {
     height: 80vh; /* Pastikan elemen memiliki tinggi yang cukup */
 }
 
-#tentang .section-container {
-    background-color: #ffffff;
-    padding: 60px;
-    height: 500px;
-}
-
-#tentang p {
-    color: #3d3d3d;
-}
-
 #input-section .section-container {
     background-color: #ffffff;
     color: #3d3d3d;
@@ -138,37 +128,6 @@ html, body {
 }
 
 
-.about-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.about-image img {
-    width: 500px;
-    height: 300px;
-    border-radius: 8px;
-}
-
-.about-text {
-    max-width: 600px;
-    padding-left: 100px;
-}
-
-.about-text h2 {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.about-text p {
-    margin-bottom: 10px;
-    line-height: 1.6;
-    text-align: justify;
-}
-
 .features-list {
     list-style-type: none;
     padding: 0;
@@ -183,7 +142,7 @@ html, body {
 
 #pertumbuhan .section-container {
     background-color: #ffffff;
-    top: 20px;
+    top: 40px;
     height: auto;
     padding-bottom: 50px;
 }
@@ -555,7 +514,92 @@ th, tfoot {
     color: #3d3d3d
 }
 
-/* Media Queries for Responsive Design */
+#tentang .section-container {
+    background-color: #ffffff;
+    padding: 60px;
+    height: auto; /* Sesuaikan tinggi dengan konten */
+}
+
+#tentang p {
+    color: #3d3d3d;
+}
+
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-image {
+    width: 500px;
+    position: relative; /* Pastikan posisi relative */
+}
+
+.about-right {
+    max-width: 600px;
+    padding-left: 50px;
+}
+
+.about-right h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.about-right p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+#map {
+    height: 300px;
+    width: 100%;
+    border: 2px solid #3d3d33;
+    margin-top: 20px;
+    border-radius: 8px;
+    position: relative; /* Pastikan peta mengikuti container */
+    z-index: 1; /* Prioritas agar tidak overlap */
+    box-sizing: border-box; /* Pastikan lebar dan tinggi sesuai dengan container */
+}
+
+#controls {
+    margin-bottom: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin: 0;
+    width: calc(100% - 100px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #3d3d33;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #c9c8c8;
+    color: #000000;
+}
+
+
+
 
 /* Untuk layar dengan lebar maksimal 768px (Tablet dan ponsel kecil) */
 @media screen and (max-width: 768px) {
